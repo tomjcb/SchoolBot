@@ -1,6 +1,7 @@
 import Emojis.Emojis;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
+import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import javax.security.auth.login.LoginException;
@@ -14,6 +15,7 @@ public class Main extends ListenerAdapter {
         MsgCommands cmd = new MsgCommands();
         String token = "NjY2OTk4NzA4MDY3NjMxMTE1.XiH_EA.d8S9I6UIzCRS-Z8gHHafS1Md9LQ";
         builder.setToken(token);
+        builder.setGame(Game.playing("aider les étudiants de B"));
         builder.addEventListener(new Main());
         builder.addEventListener(new MsgCommands());
         builder.buildAsync();
