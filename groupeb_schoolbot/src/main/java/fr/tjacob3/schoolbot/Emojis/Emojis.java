@@ -1,4 +1,4 @@
-package Emojis;
+package fr.tjacob3.schoolbot.Emojis;
 
 public interface Emojis {
     String EMOJI_RIRE = "\uD83D\uDE02";

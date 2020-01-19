@@ -1,3 +1,5 @@
+package fr.tjacob3.schoolbot;
+
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.Event;
@@ -13,7 +15,7 @@ public class MsgCommands implements EventListener {
     @Override
     public void onEvent(Event event) {
         if (event instanceof ReadyEvent)
-            System.out.println("SchoolBot Online, and ready to operate");
+            System.out.println("fr.tjacob3.schoolbot.SchoolBot Online, and ready to operate");
 
         if(event instanceof MessageReactionAddEvent){
             System.out.println("reac ajout");
