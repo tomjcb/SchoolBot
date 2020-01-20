@@ -10,6 +10,7 @@ import fr.tjacob3.schoolbot.SchoolBot;
 import fr.tjacob3.schoolbot.command.Command.ExecutorType;
 import fr.tjacob3.schoolbot.command.defaut.CommandDefault;
 import fr.tjacob3.schoolbot.command.defaut.HelpCommand;
+import fr.tjacob3.schoolbot.command.devoir.DevoirCommand;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
@@ -29,7 +30,7 @@ public final class CommandMap {
     public CommandMap(SchoolBot schoolBot) {
         this.schoolBot = schoolBot;
 
-        registerCommands(new CommandDefault(schoolBot), new HelpCommand(this));
+        registerCommands(new CommandDefault(schoolBot), new HelpCommand(this), new DevoirCommand(this));
     }
 
     public String getTag() {

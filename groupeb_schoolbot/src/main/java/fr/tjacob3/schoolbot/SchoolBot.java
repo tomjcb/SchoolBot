@@ -26,7 +26,7 @@ public class SchoolBot implements Runnable {
     private boolean running;
 
     public SchoolBot() throws LoginException {
-        jda = (JDA) new JDABuilder(AccountType.BOT).setToken("NjY2OTk4NzA4MDY3NjMxMTE1.XiH_EA.d8S9I6UIzCRS-Z8gHHafS1Md9LQ").buildAsync();
+        jda = (JDA) new JDABuilder(AccountType.BOT).setToken("NjY2OTk4NzA4MDY3NjMxMTE1.XiWJhQ.Ji-LZDgsWtxRRPVE4L9ywdL8PEA").buildAsync();
         jda.addEventListener(new SchoolListener(commandMap));
 
         System.out.println("bot Online.");
