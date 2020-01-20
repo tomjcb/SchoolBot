@@ -40,7 +40,6 @@ public class DevoirCommands implements EventListener {
                 }
                 msg.getMessage().delete().complete();
                 EmbedBuilder eb = new EmbedBuilder();
-
                 eb.setTitle(matiere, null);
                 eb.setColor(Color.cyan);
                 eb.setDescription("Pour le " + date.replace("_", " "));

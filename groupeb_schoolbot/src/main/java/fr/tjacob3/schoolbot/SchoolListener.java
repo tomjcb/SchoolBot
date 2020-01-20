@@ -1,6 +1,7 @@
 package fr.tjacob3.schoolbot;
 
 import fr.tjacob3.schoolbot.command.CommandMap;
+import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.entities.impl.UserImpl;
@@ -8,6 +9,10 @@ import net.dv8tion.jda.core.events.Event;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.EventListener;
+
+import java.awt.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class SchoolListener implements EventListener {
 
@@ -40,7 +45,13 @@ public class SchoolListener implements EventListener {
 
     private void onReady(ReadyEvent event){
         User owner = event.getJDA().getUserById("246734124121849857");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
         if(!owner.hasPrivateChannel()) owner.openPrivateChannel().complete();
-        ((UserImpl)owner).getPrivateChannel().sendMessage("Schoolbot correctement démarré.").queue();
+        EmbedBuilder eb = new EmbedBuilder();
+        eb.setTitle("[" + dtf.format(now) + "] ", null);
+        eb.setColor(Color.cyan);
+        eb.setDescription("Schoolbot correctement démarré");
+        ((UserImpl)owner).getPrivateChannel().sendMessage(eb.build()).queue();
     }
 }

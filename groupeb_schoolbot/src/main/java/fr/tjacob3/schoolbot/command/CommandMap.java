@@ -47,7 +47,7 @@ public final class CommandMap {
             if(method.isAnnotationPresent(Command.class)){
                 Command command = method.getAnnotation(Command.class);
                 method.setAccessible(true);
-                SimpleCommand simpleCommand = new SimpleCommand(command.name(), command.description(), command.type(), object, method);
+                SimpleCommand simpleCommand = new SimpleCommand(command.name(), command.description(), command.usage(), command.type(), object, method);
                 commands.put(command.name(), simpleCommand);
             }
         }

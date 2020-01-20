@@ -11,6 +11,7 @@ public @interface Command {
     public String name();
     public String description() default "Sans decription.";
     public ExecutorType type() default ExecutorType.ALL;
+    public String usage() default "Pas d'usage défini";
 
     public enum ExecutorType{
         ALL, USER, CONSOLE,
