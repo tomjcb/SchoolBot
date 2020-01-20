@@ -2,7 +2,10 @@ package fr.tjacob3.schoolbot;
 
 import fr.tjacob3.schoolbot.command.CommandMap;
 import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.core.entities.impl.UserImpl;
 import net.dv8tion.jda.core.events.Event;
+import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.EventListener;
 
@@ -17,6 +20,7 @@ public class SchoolListener implements EventListener {
     @Override
     public void onEvent(Event event){
         if(event instanceof MessageReceivedEvent) onMessage((MessageReceivedEvent)event);
+        else if(event instanceof  ReadyEvent) onReady((ReadyEvent)event);
     }
 
     private void onMessage(MessageReceivedEvent event){
@@ -24,7 +28,7 @@ public class SchoolListener implements EventListener {
 
         String message = event.getMessage().getContentRaw();
         if(message.startsWith(commandMap.getTag())){
-            message = message.replaceFirst(commandMap.getTag(), "");
+            message = message.replace(commandMap.getTag(), "");
             if(commandMap.commandUser(event.getAuthor(), message, event.getMessage())){
                 if(event.getTextChannel() != null && event.getGuild().getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)){
                     event.getMessage().delete().queue();
@@ -32,5 +36,11 @@ public class SchoolListener implements EventListener {
             }
         }
 
+    }
+
+    private void onReady(ReadyEvent event){
+        User owner = event.getJDA().getUserById("246734124121849857");
+        if(!owner.hasPrivateChannel()) owner.openPrivateChannel().complete();
+        ((UserImpl)owner).getPrivateChannel().sendMessage("Schoolbot correctement démarré.").queue();
     }
 }

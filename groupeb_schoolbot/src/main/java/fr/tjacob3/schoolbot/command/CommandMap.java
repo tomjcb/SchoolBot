@@ -9,6 +9,7 @@ import java.util.Map;
 import fr.tjacob3.schoolbot.SchoolBot;
 import fr.tjacob3.schoolbot.command.Command.ExecutorType;
 import fr.tjacob3.schoolbot.command.defaut.CommandDefault;
+import fr.tjacob3.schoolbot.command.defaut.HelpCommand;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
@@ -16,18 +17,19 @@ import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.PrivateChannel;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.core.entities.impl.UserImpl;
 
 public final class CommandMap {
 
     private final SchoolBot schoolBot;
 
     private final Map<String, SimpleCommand> commands = new HashMap<>();
-    private final String tag = "=";
+    private final String tag = "$";
 
     public CommandMap(SchoolBot schoolBot) {
         this.schoolBot = schoolBot;
 
-        registerCommand(new CommandDefault(schoolBot));
+        registerCommands(new CommandDefault(schoolBot), new HelpCommand(this));
     }
 
     public String getTag() {
@@ -94,7 +96,7 @@ public final class CommandMap {
             else if(parameters[i].getType() == String.class) objects[i] = command;
             else if(parameters[i].getType() == Message.class) objects[i] = message;
             else if(parameters[i].getType() == JDA.class) objects[i] = schoolBot.getJda();
-            else if(parameters[i].getType() == MessageChannel.class) objects[i] = message.getChannel();
+            else if(parameters[i].getType() == MessageChannel.class) objects[i] = message == null ? null : message.getChannel();
         }
         simpleCommand.getMethod().invoke(simpleCommand.getObject(), objects);
     }

@@ -4,6 +4,8 @@ import fr.tjacob3.schoolbot.command.CommandMap;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
+import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.core.entities.impl.UserImpl;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
@@ -26,6 +28,7 @@ public class SchoolBot implements Runnable {
     public SchoolBot() throws LoginException {
         jda = (JDA) new JDABuilder(AccountType.BOT).setToken("NjY2OTk4NzA4MDY3NjMxMTE1.XiH_EA.d8S9I6UIzCRS-Z8gHHafS1Md9LQ").buildAsync();
         jda.addEventListener(new SchoolListener(commandMap));
+
         System.out.println("bot Online.");
     }
 
